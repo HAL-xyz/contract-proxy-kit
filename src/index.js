@@ -129,7 +129,7 @@ const defaultNetworks = {
 const zeroAddress = `0x${'0'.repeat(40)}`;
 
 // keccak256(toUtf8Bytes('Contract Proxy Kit'))
-const predeterminedSaltNonce = '0xcfe33a586323e7325be6aa6ecd8b4600d232a9037e83c8ece69413b777dabe65';
+const defaultPredeterminedSaltNonce = '0xcfe33a586323e7325be6aa6ecd8b4600d232a9037e83c8ece69413b777dabe65';
 
 const CPK = class CPK {
   static async create(opts) {
@@ -144,6 +144,7 @@ const CPK = class CPK {
     ethers,
     signer,
     ownerAccount,
+    predeterminedSaltNonce,
     networks,
   }) {
     if (web3 != null) {
@@ -163,6 +164,8 @@ const CPK = class CPK {
       ...defaultNetworks,
       ...(networks || {}),
     };
+
+    this.predeterminedSaltNonce = predeterminedSaltNonce || defaultPredeterminedSaltNonce;
   }
 
   async init() {
@@ -208,7 +211,7 @@ const CPK = class CPK {
         this.proxyFactory = new this.web3.eth.Contract(cpkFactoryAbi, proxyFactoryAddress);
         const create2Salt = this.web3.utils.keccak256(this.web3.eth.abi.encodeParameters(
           ['address', 'uint256'],
-          [ownerAccount, predeterminedSaltNonce],
+          [ownerAccount, this.predeterminedSaltNonce],
         ));
 
         this.contract = new this.web3.eth.Contract(safeAbi, this.web3.utils.toChecksumAddress(
@@ -256,7 +259,7 @@ const CPK = class CPK {
 
         const create2Salt = this.ethers.utils.keccak256(this.ethers.utils.defaultAbiCoder.encode(
           ['address', 'uint256'],
-          [ownerAccount, predeterminedSaltNonce],
+          [ownerAccount, this.predeterminedSaltNonce],
         ));
 
         const address = this.ethers.utils.getAddress(
@@ -474,7 +477,7 @@ const CPK = class CPK {
           'createProxyAndExecTransaction',
           [
             this.masterCopyAddress,
-            predeterminedSaltNonce,
+            this.predeterminedSaltNonce,
             this.fallbackHandlerAddress,
             to, value, data, operation,
           ],
@@ -507,7 +510,7 @@ const CPK = class CPK {
       'createProxyAndExecTransaction',
       [
         this.masterCopyAddress,
-        predeterminedSaltNonce,
+        this.predeterminedSaltNonce,
         this.fallbackHandlerAddress,
         getContractAddress(this.multiSend), 0,
         encodeMultiSendCalldata(transactions),
