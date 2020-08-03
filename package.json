@@ -30,7 +30,7 @@
   "homepage": "https://github.com/gnosis/contract-proxy-kit#readme",
   "devDependencies": {
     "@gnosis.pm/conditional-tokens-contracts": "^0.5.4",
-    "@gnosis.pm/safe-contracts": "^1.1.1",
+    "@gnosis.pm/safe-contracts": "github:gnosis/safe-contracts#v1.2.0",
     "@truffle/hdwallet-provider": "^1.0.33",
     "dotenv": "^8.2.0",
     "eslint": "^6.8.0",
