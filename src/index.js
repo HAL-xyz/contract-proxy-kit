@@ -99,14 +99,14 @@ const defaultNetworks = {
   // mainnet
   1: {
     masterCopyAddress: '0x6851d6fdfafd08c0295c392436245e5bc78b0185',
-    proxyFactoryAddress: '0x0fB4340432e56c014fa96286de17222822a9281b',
+    proxyFactoryAddress: '0x1eDa606967A97522B432D39D19a2bf4dAF2229De',
     multiSendAddress: '0xd740dB15E7DD01753f4a1Db14226b520C7E6C859',
     fallbackHandlerAddress: '0x40A930851BD2e590Bd5A5C981b436de25742E980',
   },
   // rinkeby
   4: {
     masterCopyAddress: '0x6851d6fdfafd08c0295c392436245e5bc78b0185',
-    proxyFactoryAddress: '0x336c19296d3989e9e0c2561ef21c964068657c38',
+    proxyFactoryAddress: '0x1f4Ab3778e3FeB06A3D4702B31CE56a561080986',
     multiSendAddress: '0x636D3336B120498CC3B596FF30B20e87d813953f',
     fallbackHandlerAddress: '0x40A930851BD2e590Bd5A5C981b436de25742E980',
   },
